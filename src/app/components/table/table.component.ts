@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementService } from '../../services/data.service';
 import { Elements } from '../../interfaces/elements';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   standalone: true,
   selector: 'app-table',
   templateUrl: './table.component.html',
-  imports: [],
+  imports: [MatTableModule],
 })
 export class TableComponent implements OnInit {
-  elements: Elements[] = []; 
+  elements: Elements[] = [];
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<Elements>(); 
+  dataSource = new MatTableDataSource<Elements>();
 
   constructor(private elementService: ElementService) {}
 

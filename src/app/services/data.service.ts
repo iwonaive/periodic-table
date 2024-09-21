@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Elements } from '../interfaces/elements';
+import { HttpClient } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ElementService {
-  ELEMENT_DATA: Elements[] = [];
+  constructor(private httpClient: HttpClient) {}
+
+  jsonUrl = '/assets/data.json';
 
   getElements(): Observable<Elements[]> {
-    return of(this.ELEMENT_DATA);
+    return this.httpClient.get<Elements[]>(this.jsonUrl);
   }
 }
