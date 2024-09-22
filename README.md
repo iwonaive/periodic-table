@@ -20,5 +20,7 @@ cd periodic-table
 ### 3. install the dependiences
 npm install
 
-### 4. run the porject in development mode
+### 4. run the project in development mode
 ng serve
+
+in your browser go to http://localhost:4200
