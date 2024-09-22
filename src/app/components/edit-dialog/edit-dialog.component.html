@@ -1,4 +1,4 @@
-<h2>Edit Element</h2>
+<!-- <h2>Edit Element</h2>
 
 <div>
   <label for="position">Position</label>
@@ -21,6 +21,25 @@
 </div>
 
 <div>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSave()">Save</button>
+</div> -->
+
+<h2 mat-dialog-title>Edit Element</h2>
+
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.name" placeholder="Name" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.weight" placeholder="Weight" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.symbol" placeholder="Symbol" />
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
   <button mat-button (click)="onSave()">Save</button>
 </div>
