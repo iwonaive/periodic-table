@@ -6,7 +6,6 @@ import { Elements } from '../interfaces/elements';
   providedIn: 'root',
 })
 export class ElementService {
-  // Tworzymy obiekt TypeScript z danymi o pierwiastkach
   private periodicData: Elements[] = [
     { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
     { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
@@ -20,8 +19,7 @@ export class ElementService {
     { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
   ];
 
-  // Funkcja zwracająca dane jako Observable
   getElements(): Observable<Elements[]> {
-    return of(this.periodicData); // Korzystamy z funkcji `of`, by zwrócić dane jako Observable
+    return of(this.periodicData);
   }
 }

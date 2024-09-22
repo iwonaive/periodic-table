@@ -1,43 +1,38 @@
-<div>
-  <!-- Input do filtrowania -->
-  <input #filterInput matInput placeholder="Filter elements" />
+<div class="content">
+  <div>
+    <input #filterInput matInput class="filter" placeholder="Filter elements" />
+    <button mat-button (click)="clearFilter(filterInput)">Clear Filter</button>
+  </div>
 
-  <!-- Tabela z danymi -->
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!-- Kolumna: Pozycja -->
     <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> Position </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      <th mat-header-cell *matHeaderCellDef>Position</th>
+      <td mat-cell *matCellDef="let element">{{ element.position }}</td>
     </ng-container>
 
-    <!-- Kolumna: Nazwa -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
 
-    <!-- Kolumna: Waga -->
     <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      <th mat-header-cell *matHeaderCellDef>Weight</th>
+      <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
     </ng-container>
 
-    <!-- Kolumna: Symbol -->
     <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      <th mat-header-cell *matHeaderCellDef>Symbol</th>
+      <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
     </ng-container>
 
-    <!-- Kolumna: Akcje (Edycja) -->
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let element">
         <button mat-button (click)="openEditDialog(element)">Edit</button>
       </td>
     </ng-container>
 
-    <!-- Header oraz wiersze -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </div>

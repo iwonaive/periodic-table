@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   selector: 'app-edit-dialog',
   templateUrl: './edit-dialog.component.html',
+  styleUrl: './edit-dialog.component.css',
   imports: [FormsModule, CommonModule, MatFormFieldModule, MatInputModule],
 })
 export class EditDialogComponent {

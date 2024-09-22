@@ -6,16 +6,21 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { FormsModule } from '@angular/forms';
-import { Observable, fromEvent } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   standalone: true,
   selector: 'app-table',
   templateUrl: './table.component.html',
+  styleUrl: './table.component.css',
   imports: [MatTableModule, MatDialogModule, CommonModule, FormsModule],
 })
 export class TableComponent implements OnInit {
+  clearFilter(filterInput: HTMLInputElement) {
+    this.dataSource.filter = '';
+    filterInput.value = '';
+  }
   displayedColumns: string[] = [
     'position',
     'name',
@@ -36,12 +41,8 @@ export class TableComponent implements OnInit {
       this.dataSource.data = data;
     });
 
-    // Filtrowanie z opóźnieniem 2s
     fromEvent(this.filterInput.nativeElement, 'input')
-      .pipe(
-        debounceTime(2000), // 2 sekundy opóźnienia
-        distinctUntilChanged() // Sprawdź, czy wartość faktycznie się zmieniła
-      )
+      .pipe(debounceTime(2000), distinctUntilChanged())
       .subscribe(() => {
         const filterValue = this.filterInput.nativeElement.value
           .trim()
@@ -50,25 +51,23 @@ export class TableComponent implements OnInit {
       });
   }
 
-  // Otwiera popup do edycji rekordu
   openEditDialog(element: Elements): void {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       width: '250px',
-      data: { ...element }, // Przekazujemy kopię obiektu
+      data: { ...element },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.updateElement(result); // Aktualizuj rekord w tabeli po zapisaniu
+        this.updateElement(result);
       }
     });
   }
 
-  // Aktualizuje rekord w tabeli (niemutowalnie)
   updateElement(updatedElement: Elements): void {
     const updatedData = this.dataSource.data.map((element) =>
       element.position === updatedElement.position ? updatedElement : element
     );
-    this.dataSource.data = [...updatedData]; // Niemutowalna aktualizacja
+    this.dataSource.data = [...updatedData];
   }
 }
