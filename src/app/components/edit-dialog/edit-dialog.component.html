@@ -1,0 +1,26 @@
+<h2>Edit Element</h2>
+
+<div>
+  <label for="position">Position</label>
+  <input [(ngModel)]="data.position" id="position" disabled />
+</div>
+
+<div>
+  <label for="name">Name</label>
+  <input [(ngModel)]="data.name" id="name" />
+</div>
+
+<div>
+  <label for="weight">Weight</label>
+  <input [(ngModel)]="data.weight" id="weight" />
+</div>
+
+<div>
+  <label for="symbol">Symbol</label>
+  <input [(ngModel)]="data.symbol" id="symbol" />
+</div>
+
+<div>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSave()">Save</button>
+</div>
